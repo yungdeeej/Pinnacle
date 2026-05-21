@@ -1,0 +1,38 @@
+modules = ["nodejs-20", "web"]
+run = "npm run dev"
+hidden = [".config", ".next", "node_modules", ".swc"]
+
+[nix]
+channel = "stable-24_05"
+
+[env]
+NEXT_TELEMETRY_DISABLED = "1"
+PORT = "3000"
+
+[deployment]
+deploymentTarget = "autoscale"
+build = ["npm", "run", "build"]
+run = ["npm", "run", "start"]
+
+[[ports]]
+localPort = 3000
+externalPort = 80
+
+[workflows]
+runButton = "Run Syndicate"
+
+[[workflows.workflow]]
+name = "Run Syndicate"
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run db:seed"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run dev"

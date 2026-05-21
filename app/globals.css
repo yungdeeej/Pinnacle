@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+  html, body {
+    @apply bg-midnight-950 text-midnight-100;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+  body {
+    background-image:
+      radial-gradient(at 20% 0%, rgba(14, 165, 233, 0.08) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, rgba(34, 197, 94, 0.04) 0px, transparent 50%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-xl border border-midnight-800 bg-midnight-900/60 backdrop-blur p-5 shadow-sm;
+  }
+  .card-glow {
+    @apply rounded-xl border border-ice-700/40 bg-midnight-900/80 backdrop-blur p-5 shadow-md shadow-ice-700/10;
+  }
+  .pill {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium;
+  }
+  .pill-strike { @apply bg-strike/15 text-strike border border-strike/30; }
+  .pill-pass { @apply bg-midnight-700/50 text-midnight-300 border border-midnight-600; }
+  .pill-warn { @apply bg-warn/15 text-warn border border-warn/30; }
+  .pill-danger { @apply bg-danger/15 text-danger border border-danger/30; }
+  .label-mono { @apply font-mono text-xs uppercase tracking-wider text-midnight-400; }
+  .num { @apply font-mono tabular-nums; }
+  .row-hover { @apply hover:bg-midnight-800/50 transition-colors; }
+  .btn {
+    @apply inline-flex items-center gap-2 rounded-lg px-3.5 py-2 text-sm font-medium transition-colors;
+    @apply bg-ice-600 text-white hover:bg-ice-500 disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 rounded-lg px-3.5 py-2 text-sm font-medium transition-colors;
+    @apply bg-midnight-800 text-midnight-100 hover:bg-midnight-700 border border-midnight-700;
+  }
+}
+
+/* Scrollbar tweak */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { @apply bg-midnight-800 rounded; }
+::-webkit-scrollbar-thumb:hover { @apply bg-midnight-700; }
